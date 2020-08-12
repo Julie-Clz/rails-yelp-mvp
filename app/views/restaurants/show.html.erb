@@ -1,0 +1,23 @@
+<div class="container">
+  <h1><%= @restaurant.name %></h1>
+  <h5><%= @restaurant.category %></h5>
+  <br>
+  <h6> 📫 Contact</h6>
+  <p><%= @restaurant.address %></p>
+  <p><%= @restaurant.phone_number %></p>
+  <br>
+  <%= link_to "🔙", restaurants_path %>
+  <br>
+  <%= link_to 'Leave a review', new_restaurant_review_path(@restaurant) %>
+  <br>
+  <ul class="list-group">
+  <% @restaurant.reviews.each do |review| %>
+    <li><%= review.content %>
+      <%= link_to "Remove",
+                  review_path(review),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+    </li>
+  <% end %>
+</ul>
+</div>
